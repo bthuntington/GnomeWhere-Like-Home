@@ -13,6 +13,7 @@ import UIKit
 
 class LevelTwoScene: SKScene {
     var towerSpot1 = SKSpriteNode()
+    var towerSpot2 = SKSpriteNode()
     var ladyBug = SKSpriteNode()
     var addEnemiesTime = 30
     var enemiesLeft = 10
