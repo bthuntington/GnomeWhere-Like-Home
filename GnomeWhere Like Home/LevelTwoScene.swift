@@ -6,13 +6,24 @@
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
 // code used from https://www.raywenderlich.com/1079-what-s-new-in-spritekit-on-ios-10-a-look-at-tile-maps
 // picture of grasshopper from https://www.vectorstock.com/royalty-free-vector/isolated-cute-green-grasshopper-vector-18468818
+// code for bullets taken from http://developerplayground.net/how-to-implement-a-space-shooter-with-spritekit-and-swift-part-2/
 
 
 import SpriteKit
 import GameplayKit
 import UIKit
 
-class LevelTwoScene: SKScene {
+struct PhysicsCategory {
+    static let none      : UInt32 = 0
+    static let all       : UInt32 = UInt32.max
+    static let enemy     : UInt32 = 0b1       // 1
+    static let projectile: UInt32 = 0b10      // 2
+}
+
+class LevelTwoScene: SKScene  {
+    
+    var bulletsArray = [SKSpriteNode]()
+    var dLastShootTime: CFTimeInterval = 1
     //labels for game stats
     var lives = SKLabelNode()
     var seeds = SKLabelNode()
@@ -33,17 +44,18 @@ class LevelTwoScene: SKScene {
     var earthWormOption = SKSpriteNode()
     //
     var enemies = [SKSpriteNode]()
+    var towers = [SKSpriteNode]()
     var addEnemiesTime = 30
     // enemies added when they spawn
     // & deleted when they die
-    var enemiesLeft = 0
+    var enemiesOnField = 0
     // time enemies spawn
     var enemiesTimer: Timer? = nil
     // time players get to prepare
     var prepareTimer: Timer? = nil
     // time until the wave is over
     var waveTimer: Timer? = nil
-    var prepareTime = 60
+    var prepareTime = 6
     var waveTime = 60
     // true: no options out
     // false: options are out
@@ -59,6 +71,8 @@ class LevelTwoScene: SKScene {
 //        }))
 //        self.parent!.scene!.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
         //addTower(towerName: "towerSpot1")
+        physicsWorld.gravity = .zero
+        physicsWorld.contactDelegate = self
         
 
     }
@@ -109,9 +123,17 @@ class LevelTwoScene: SKScene {
     func addEnemy() {
         let enemy = SKSpriteNode(imageNamed:"Blue_Bird_Flying0001")
         enemy.scale(to: CGSize(width: 100, height: 100))
+        
         enemies.append(enemy)
         addChild(enemy)
-        enemiesLeft = enemiesLeft + 1
+        // Add physics body for collision detection
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) // 1
+        enemy.physicsBody?.isDynamic = true // 2
+        enemy.physicsBody?.categoryBitMask = PhysicsCategory.enemy // 3
+        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
+        enemy.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
+        
+        enemiesOnField = enemiesOnField + 1
         let path = UIBezierPath()
         path.move(to: CGPoint(x: -250, y: 200))
         path.addLine(to: CGPoint(x: 160, y: 200))
@@ -324,42 +346,51 @@ class LevelTwoScene: SKScene {
         // row 1
         if touchedNode.position == CGPoint(x: -130.0, y: 190.0) {
             print("adding ladybug")
+            towers.append(towerSpot1)
             towerSpot1.texture = SKTexture(imageNamed: "ladybug")
         }
         if touchedNode.position == CGPoint(x: 30.0, y: 190.0) {
             print("adding ladybug")
+            towers.append(towerSpot2)
             towerSpot2.texture = SKTexture(imageNamed: "ladybug")
         }
         // row 2
         if touchedNode.position == CGPoint(x: -130.0, y: 110.0) {
             print("adding ladybug")
+            towers.append(towerSpot3)
             towerSpot3.texture = SKTexture(imageNamed: "ladybug")
         }
         if touchedNode.position == CGPoint(x: 30.0, y: 110.0) {
             print("adding ladybug")
+            towers.append(towerSpot4)
             towerSpot4.texture = SKTexture(imageNamed: "ladybug")
         }
         // row 3
         if touchedNode.position == CGPoint(x: -130.0, y: 0.0) {
             print("adding ladybug")
+            towers.append(towerSpot5)
             towerSpot5.texture = SKTexture(imageNamed: "ladybug")
         }
         if touchedNode.position == CGPoint(x: 0.0, y: 0.0) {
             print("adding ladybug")
+            towers.append(towerSpot6)
             towerSpot6.texture = SKTexture(imageNamed: "ladybug")
         }
         // row 4
         if touchedNode.position == CGPoint(x: -130.0, y: -110.0) {
             print("adding ladybug")
+            towers.append(towerSpot7)
             towerSpot7.texture = SKTexture(imageNamed: "ladybug")
         }
         if touchedNode.position == CGPoint(x: 0.0, y: -110.0) {
             print("adding ladybug")
+            towers.append(towerSpot8)
             towerSpot8.texture = SKTexture(imageNamed: "ladybug")
         }
         // end node
         if touchedNode.position == CGPoint(x: -130.0, y: -220.0) {
             print("adding ladybug")
+            towers.append(towerSpot9)
             towerSpot9.texture = SKTexture(imageNamed: "ladybug")
         }
     }
@@ -381,6 +412,36 @@ class LevelTwoScene: SKScene {
         }
     }
     
+    // Create bullets
+    func shoot(targetSprite: SKSpriteNode) {
+        
+        for tower in towers {
+            // Create the bullet sprite
+            let bullet = SKSpriteNode()
+            bullet.color = UIColor.green
+            bullet.size = CGSize(width: 5,height: 5)
+            bullet.position = CGPoint(x: tower.position.x, y: tower.position.y)
+            // Add physics body for collision detection
+            bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
+            bullet.physicsBody?.isDynamic = true
+            bullet.physicsBody?.categoryBitMask = PhysicsCategory.projectile
+            bullet.physicsBody?.contactTestBitMask = PhysicsCategory.enemy
+            bullet.physicsBody?.collisionBitMask = PhysicsCategory.none
+            bullet.physicsBody?.usesPreciseCollisionDetection = true
+
+            targetSprite.parent?.addChild(bullet)
+            // Determine vector to targetSprite
+            let vector = CGVector(dx: targetSprite.position.x-tower.position.x, dy: targetSprite.position.y-tower.position.y)
+            
+            // Create the action to move the bullet. Don’t forget to remove the bullet!
+            let bulletAction = SKAction.sequence([SKAction.repeat(SKAction.move(by: vector, duration: 1), count: 10) ,  SKAction.wait(forDuration: 30.0/60.0), SKAction.removeFromParent()])
+            bullet.run(bulletAction)
+            
+            bulletsArray.append(bullet)
+            
+        }
+    }
+    
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -398,9 +459,53 @@ class LevelTwoScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-
+        // shoot in direction of first enemy added
+        if enemiesOnField > 0 {
+            
+            if (currentTime - dLastShootTime) >= 1 {
+                shoot(targetSprite: enemies[0])
+                dLastShootTime=currentTime
+            }
+        }
         
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
         
+        print("enemy hit")
+        
+    }
 
+    
+    func projectileDidCollideWithEnemy(projectile: SKSpriteNode, enemy: SKSpriteNode) {
+        print("Hit")
+        projectile.removeFromParent()
+        enemy.removeFromParent()
+        enemies.removeFirst()
+    }
+    
+}
+
+extension LevelTwoScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        // 1
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        // 2
+        if ((firstBody.categoryBitMask & PhysicsCategory.enemy != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.projectile != 0)) {
+            if let enemy = firstBody.node as? SKSpriteNode,
+                let projectile = secondBody.node as? SKSpriteNode {
+                projectileDidCollideWithEnemy(projectile: projectile, enemy: enemy)
+            }
+        }
     }
 }
