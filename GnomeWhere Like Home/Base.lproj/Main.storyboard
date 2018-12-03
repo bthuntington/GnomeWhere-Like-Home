@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,7 +61,7 @@
                                                 <rect key="frame" x="0.0" y="59" width="81" height="30"/>
                                                 <state key="normal" title="Instructions"/>
                                                 <connections>
-                                                    <segue destination="z81-Om-zud" kind="show" id="0wN-YW-ZCK"/>
+                                                    <segue destination="z81-Om-zud" kind="show" id="NSW-Bj-1Uk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uss-lV-3bi">
@@ -102,11 +101,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-s9-UiH">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-s9-UiH">
                                 <rect key="frame" x="-4" y="60" width="383" height="611"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-ir-jc0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-ir-jc0">
                                         <rect key="frame" x="14" y="31" width="348" height="540"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Welcome to GnomeWhere Like Home, a fun tower defense game! The goal of the game is to defeat all the invading bugs and protect the gnomes' garden. Luckily, you have some defenders to help you out. To place one, you'll need to have enough seeds to bribe them into helping you. At the beginning, you will have a set amount of seeds to use, but you can get more by defeating enemies! Defeat all 10 waves of enemies to beat a level and defend the garden!</string>
@@ -121,12 +122,6 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.66134645280000004" green="1" blue="0.90383288709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="wdJ-ir-jc0" firstAttribute="leading" secondItem="Ihm-s9-UiH" secondAttribute="leadingMargin" constant="16" id="Xdd-Ib-TWK"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="wdJ-ir-jc0" secondAttribute="trailing" constant="16" id="bl6-Vm-up9"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="wdJ-ir-jc0" secondAttribute="bottom" constant="16" id="gJ0-8k-6x8"/>
-                                    <constraint firstItem="wdJ-ir-jc0" firstAttribute="top" secondItem="Ihm-s9-UiH" secondAttribute="topMargin" constant="16" id="xcp-gw-m6R"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -377,42 +372,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <skView contentMode="scaleToFill" sceneName="LevelTwoScene.sks" translatesAutoresizingMaskIntoConstraints="NO" id="S32-ez-bSa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="478"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="482"/>
                             </skView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-Ca-fRJ">
-                                <rect key="frame" x="16" y="548" width="343" height="113"/>
+                                <rect key="frame" x="16" y="552" width="343" height="109"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IPX-An-u1Z">
-                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="113"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="88" height="109"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-KM-aYY">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="47"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-KM-aYY">
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="109"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Seeds: 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64w-Vu-Lgh">
-                                                <rect key="frame" x="0.0" y="53" width="61.5" height="16"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Plants Left:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0s-bx-8IO">
-                                                <rect key="frame" x="0.0" y="75" width="68.5" height="16"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Waves left:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5y-lJ-mtR">
-                                                <rect key="frame" x="0.0" y="97" width="67" height="16"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="oQH-zT-e6T">
-                                        <rect key="frame" x="121.5" y="0.0" width="56" height="113"/>
+                                        <rect key="frame" x="103" y="0.0" width="56" height="109"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LadyBug" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCn-bQ-Rbx">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="14.5"/>
@@ -421,26 +398,18 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ladybug" translatesAutoresizingMaskIntoConstraints="NO" id="N5l-Dw-AfM">
-                                                <rect key="frame" x="0.0" y="15.5" width="56" height="56"/>
+                                                <rect key="frame" x="0.0" y="15.5" width="56" height="79"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 12 S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-M0-Wm6">
-                                                <rect key="frame" x="0.0" y="72.5" width="56" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="95.5" width="56" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHc-2L-p7l">
-                                                <rect key="frame" x="0.0" y="87" width="56" height="26"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Add Tower"/>
-                                                <connections>
-                                                    <action selector="addLadybugTowerButton:" destination="fUR-7n-l5P" eventType="touchUpInside" id="ZKe-LS-qjw"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GaE-SP-aD0">
-                                        <rect key="frame" x="192.5" y="0.0" width="77" height="113"/>
+                                        <rect key="frame" x="174" y="0.0" width="77" height="109"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GrassHopper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fny-RH-utg">
                                                 <rect key="frame" x="0.0" y="0.0" width="77" height="14.5"/>
@@ -448,45 +417,35 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IYw-Wt-uKW">
-                                                <rect key="frame" x="0.0" y="16.5" width="77" height="50"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grasshopper" translatesAutoresizingMaskIntoConstraints="NO" id="IYw-Wt-uKW">
+                                                <rect key="frame" x="0.0" y="16.5" width="77" height="77"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 20 S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH3-cY-GiY">
-                                                <rect key="frame" x="0.0" y="68.5" width="77" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="95.5" width="77" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzO-us-Bv6">
-                                                <rect key="frame" x="0.0" y="84" width="77" height="29"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Add Tower"/>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="swl-Pi-3CU">
-                                        <rect key="frame" x="284.5" y="0.0" width="58.5" height="113"/>
+                                        <rect key="frame" x="266" y="0.0" width="77" height="109"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tower 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-bE-reJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="58.5" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EarthWorm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-bE-reJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azj-bg-XaT">
-                                                <rect key="frame" x="0.0" y="16.5" width="58.5" height="50"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earthworm" translatesAutoresizingMaskIntoConstraints="NO" id="azj-bg-XaT">
+                                                <rect key="frame" x="0.0" y="16.5" width="77" height="77"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 30 S " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syJ-v0-iNl">
-                                                <rect key="frame" x="0.0" y="68.5" width="58.5" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="95.5" width="77" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZG-w9-6rW">
-                                                <rect key="frame" x="0.0" y="84" width="58.5" height="29"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Add Tower"/>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -505,15 +464,12 @@
                         <viewLayoutGuide key="safeArea" id="Iwn-fd-ald"/>
                     </view>
                     <connections>
-                        <outlet property="cashLabel" destination="64w-Vu-Lgh" id="pzN-7i-mdm"/>
                         <outlet property="ladyBugImage" destination="N5l-Dw-AfM" id="TUn-TU-ybk"/>
-                        <outlet property="plantsLeftLabel" destination="p0s-bx-8IO" id="SjZ-ev-gmR"/>
-                        <outlet property="wavesLeftLabel" destination="w5y-lJ-mtR" id="E23-4R-sCh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U10-3C-g2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="368"/>
+            <point key="canvasLocation" x="68" y="367.46626686656674"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lMK-mP-MKE">
@@ -655,6 +611,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="earthworm" width="77" height="77"/>
+        <image name="grasshopper" width="77" height="77"/>
         <image name="ladybug" width="56" height="56"/>
         <image name="sweet-botanical-iphone7plus" width="1080" height="1920"/>
     </resources>
