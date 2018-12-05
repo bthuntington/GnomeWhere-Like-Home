@@ -420,14 +420,12 @@ class LevelTwoScene: SKScene  {
             ladybugOption.name = "ladybugOption"
             ladybugOption.position = CGPoint(x: xStart, y: y)
             self.addChild(ladybugOption)
-        }
-        if seeds > 19 {
+        } else if seeds > 19 {
             grasshopperOption = SKSpriteNode(texture: SKTexture(imageNamed: "grasshopper"), color: .black, size: CGSize(width: 45, height: 45))
             grasshopperOption.position = CGPoint(x: xStart + 50, y: y)
             grasshopperOption.name = "grasshopperOption"
             self.addChild(grasshopperOption)
-        }
-        if seeds > 29 {
+        } else if seeds > 29 {
             earthWormOption = SKSpriteNode(texture: SKTexture(imageNamed: "earthworm"), color: .black, size: CGSize(width: 45, height: 45))
             earthWormOption.position = CGPoint(x: xStart + 100, y: y)
             earthWormOption.name = "earthwormOption"
@@ -663,29 +661,11 @@ class LevelTwoScene: SKScene  {
         //grasshoppers
         if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'grasshopper' (77 x 77)" {
             print("grasshopper hit!")
-            if enemy.hits > 1 {
-                bulletsArray.removeLast()
-                enemy.removeFromParent()
-                if enemies.first != nil {
-                    if let enemyToRemove = enemies.index(of: enemy) {
-                        enemies.remove(at: enemyToRemove)
-                        seeds = seeds + 1
-                    }
-                }
-            }
+            checkIfKilled(enemy: enemy)
         }
         if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'earthworm' (77 x 77)" {
             print("earthworm hit!")
-            if enemy.hits > 1 {
-                bulletsArray.removeLast()
-                enemy.removeFromParent()
-                if enemies.first != nil {
-                    if let enemyToRemove = enemies.index(of: enemy) {
-                        enemies.remove(at: enemyToRemove)
-                        seeds = seeds + 1
-                    }
-                }
-            }
+            checkIfKilled(enemy: enemy)
         }
         
     }
@@ -728,6 +708,7 @@ func checkIfKilled(enemy: Enemy) {
     
 }
 
+// contact physics
 extension LevelTwoScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         // 1
