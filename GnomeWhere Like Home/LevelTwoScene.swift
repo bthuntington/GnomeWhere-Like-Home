@@ -92,7 +92,7 @@ class LevelTwoScene: SKScene  {
             }
         }
     }
-    var waves = 10 {
+    var waves = 6 {
         didSet {
             if waves < 1 && enemies.count == 0 {
                 wavesLabel.text = "Waves Left: 0"
@@ -207,12 +207,12 @@ class LevelTwoScene: SKScene  {
     func addEnemy() {
         var enemy = Enemy()
         if waves == 1 {
-            enemy = Enemy(imageNamed: "ladybug")
+            enemy = Enemy(imageNamed: "enemy1")
             enemy.scale(to: CGSize(width: 50, height: 50))
             enemy.strength = 3
             enemy.speed = 0.5
         } else if waves < 5 {
-            enemy = Enemy(imageNamed: "earthworm")
+            enemy = Enemy(imageNamed: "enemy2")
             enemy.scale(to: CGSize(width: 50, height: 50))
             enemy.speed = 2
         } else {
