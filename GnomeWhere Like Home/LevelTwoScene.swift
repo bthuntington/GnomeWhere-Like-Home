@@ -4,10 +4,8 @@
 //
 //  Created by Brooke Huntington on 11/25/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-// picture of grasshopper from https://www.vectorstock.com/royalty-free-vector/isolated-cute-green-grasshopper-vector-18468818
 // code for bullets based on http://developerplayground.net/how-to-implement-a-space-shooter-with-spritekit-and-swift-part-2/
-// & https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners
-//use AVFoundation for music
+
 
 
 import SpriteKit
@@ -52,8 +50,8 @@ class LevelTwoScene: SKScene  {
     var towerSpot9 = SKSpriteNode()
     // pop up when a user wants to add a tower
     var ladybugOption = SKSpriteNode()
-    var grasshopperOption = SKSpriteNode()
-    var earthWormOption = SKSpriteNode()
+    var butterflyOption = SKSpriteNode()
+    var bumblebeeOption = SKSpriteNode()
     //
     var enemies = [Enemy]()
     var towers = [SKSpriteNode]()
@@ -72,7 +70,7 @@ class LevelTwoScene: SKScene  {
     // true: no options out
     // false: options are out
     var selectTowerOptions = true
-    var seeds = 24 {
+    var seeds = 30 {
         didSet {
             seedsLabel.text = "Seeds: \(seeds)"
         }
@@ -80,7 +78,6 @@ class LevelTwoScene: SKScene  {
     var lives = 10 {
         didSet {
             if lives == 0 {
-                print("Oh no! The bugs ate all the plants in the garden! Game Over!")
                 prepareLabel.text = "Game Over. The bugs ate all the plants"
                 livesLabel.text = "Plants: 0"
                 waveTimer?.invalidate()
@@ -92,7 +89,7 @@ class LevelTwoScene: SKScene  {
             }
         }
     }
-    var waves = 6 {
+    var waves = 4 {
         didSet {
             if waves < 1 && enemies.count == 0 {
                 wavesLabel.text = "Waves Left: 0"
@@ -105,21 +102,14 @@ class LevelTwoScene: SKScene  {
     }
     
     override func didMove(to view: SKView) {
-//        createButton(x: 0, y: 100)
-//        let alert = UIAlertController(title: "GnomeWhere Like Home", message: "Defend the Garden!", preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: "Start", style: .default, handler: { action in
-        
-//        }))
-//        self.parent!.scene!.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        //addTower(towerName: "towerSpot1")
+
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
         // connecting to labels
         livesLabel = self.childNode(withName: "lives") as! SKLabelNode
         livesLabel.text = "Plants in Garden: \(lives)"
         seedsLabel = self.childNode(withName: "seeds") as! SKLabelNode
-        seedsLabel.text = "Seeds: \(24)"
+        seedsLabel.text = "Seeds: \(seeds)"
         wavesLabel = self.childNode(withName: "waves") as! SKLabelNode
         wavesLabel.text = "Waves Left: \(waves)"
         startGame()
@@ -127,19 +117,17 @@ class LevelTwoScene: SKScene  {
     }
     
     func startGame() {
-        print("starting")
         waves = waves - 1
         // put in code to create waves
         if waves > 0 {
             startPrepareTimer()
         } else {
-//            prepareLabel.text = "Success! You defended the garden!"
+            prepareLabel.text = "Success! You defended the garden!"
         }
     }
     
     
     func startPrepareTimer() {
-        print("starting wave \(waves)")
         // have timer stop a 0 and start at 60
         if prepareLabel.fontSize != 24 {
             prepareLabel.fontSize = 24
@@ -190,12 +178,10 @@ class LevelTwoScene: SKScene  {
     @objc func updateWave() {
 
         if addEnemiesTime == 0 && enemies.count == 0 {
-            print("all enemies dead, next wave")
             waveTimer?.invalidate()
             waveTimer = nil
             startGame()
         } else if waveTime != 0 {
-            print(waveTime)
             waveTime -= 1
         } else {
             waveTimer?.invalidate()
@@ -211,19 +197,19 @@ class LevelTwoScene: SKScene  {
             enemy.scale(to: CGSize(width: 50, height: 50))
             enemy.strength = 3
             enemy.speed = 0.5
-        } else if waves < 5 {
+        } else if waves < 3 {
             enemy = Enemy(imageNamed: "enemy2")
             enemy.scale(to: CGSize(width: 50, height: 50))
-            enemy.speed = 2
+            enemy.speed = 1
         } else {
-            enemy = Enemy(imageNamed:"Blue_Bird_Flying0001")
-            enemy.scale(to: CGSize(width: 100, height: 100))
+            enemy = Enemy(imageNamed:"ant")
+            enemy.scale(to: CGSize(width: 50, height: 50))
             enemy.strength = 2
         }
         
         
         enemies.append(enemy)
-        addChild(enemy)
+        self.addChild(enemy)
         // Add physics body for collision detection
         enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size) // 1
         enemy.physicsBody?.isDynamic = true // 2
@@ -262,61 +248,52 @@ class LevelTwoScene: SKScene  {
                 if name == "ladybugOption" {
                     addLadybugTexture(touchedNode: touchedNode)
                 }
-                if name == "grasshopperOption" {
-                    addGrasshopperTexture(touchedNode: touchedNode)
+                if name == "butterflyOption" {
+                    addButterflyTexture(touchedNode: touchedNode)
                 }
-                if name == "earthwormOption" {
-                    addEarthwormTexture(touchedNode: touchedNode)
+                if name == "bumblebeeOption" {
+                    addBumblebeeTexture(touchedNode: touchedNode)
                 }
                 ladybugOption.removeFromParent()
-                grasshopperOption.removeFromParent()
-                earthWormOption.removeFromParent()
+                butterflyOption.removeFromParent()
+                bumblebeeOption.removeFromParent()
                 selectTowerOptions = true
             // determines which tower to add options too
             } else {
                 if name == "towerSpot1"
                 {
-                    print("tower 1 Touched")
                     giveTowerOptions(towerName: "towerSpot1")
                 }
                 if name == "towerSpot2"
                 {
-                    print("tower 2 Touched")
                     giveTowerOptions(towerName: "towerSpot2")
                 }
                 if name == "towerSpot3"
                 {
-                    print("tower 3 Touched")
                     giveTowerOptions(towerName: "towerSpot3")
                 }
                 if name == "towerSpot4"
                 {
-                    print("tower 4 Touched")
                     giveTowerOptions(towerName: "towerSpot4")
                 }
                 if name == "towerSpot5"
                 {
-                    print("tower 5 Touched")
                     giveTowerOptions(towerName: "towerSpot5")
                 }
                 if name == "towerSpot6"
                 {
-                    print("tower 6 Touched")
                     giveTowerOptions(towerName: "towerSpot6")
                 }
                 if name == "towerSpot7"
                 {
-                    print("tower 7 Touched")
                     giveTowerOptions(towerName: "towerSpot7")
                 }
                 if name == "towerSpot8"
                 {
-                    print("tower 8 Touched")
                     giveTowerOptions(towerName: "towerSpot8")
                 }
                 if name == "towerSpot9"
                 {
-                    print("tower 9 Touched")
                     giveTowerOptions(towerName: "towerSpot9")
                 }
             }
@@ -331,81 +308,63 @@ class LevelTwoScene: SKScene  {
             if towerName == "towerSpot1" {
                 towerSpot1 = tower
 
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: -130, y: 190)
                 }
             }
             if towerName == "towerSpot2" {
                 towerSpot2 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: 30, y: 190)
                 }
             }
             if towerName == "towerSpot3" {
                 towerSpot3 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: -130, y: 110)
                 }
             }
             if towerName == "towerSpot4" {
                 towerSpot4 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: 30, y: 110)
                 }
             }
             if towerName == "towerSpot5" {
                 towerSpot5 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: -130, y: 0)
                 }
             }
             if towerName == "towerSpot6" {
                 towerSpot6 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: 0, y: 0)
                 }
             }
             if towerName == "towerSpot7" {
                 towerSpot7 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: -130, y: -110)
                 }
             }
             if towerName == "towerSpot8" {
                 towerSpot8 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: 0, y: -110)
                 }
             }
             if towerName == "towerSpot9" {
                 towerSpot9 = tower
-                if let stringTower = tower.texture {
-                    print(stringTower)
-                    print("already a tower" )
+                if tower.texture != nil {
                 } else {
                     createOptions(xStart: -130, y: -220)
                 }
@@ -420,23 +379,24 @@ class LevelTwoScene: SKScene  {
             ladybugOption.name = "ladybugOption"
             ladybugOption.position = CGPoint(x: xStart, y: y)
             self.addChild(ladybugOption)
-        } else if seeds > 19 {
-            grasshopperOption = SKSpriteNode(texture: SKTexture(imageNamed: "grasshopper"), color: .black, size: CGSize(width: 45, height: 45))
-            grasshopperOption.position = CGPoint(x: xStart + 50, y: y)
-            grasshopperOption.name = "grasshopperOption"
-            self.addChild(grasshopperOption)
-        } else if seeds > 29 {
-            earthWormOption = SKSpriteNode(texture: SKTexture(imageNamed: "earthworm"), color: .black, size: CGSize(width: 45, height: 45))
-            earthWormOption.position = CGPoint(x: xStart + 100, y: y)
-            earthWormOption.name = "earthwormOption"
-            self.addChild(earthWormOption)
+        }
+        if seeds > 19 {
+            butterflyOption = SKSpriteNode(texture: SKTexture(imageNamed: "butterfly"), color: .black, size: CGSize(width: 45, height: 45))
+            butterflyOption.position = CGPoint(x: xStart + 50, y: y)
+            butterflyOption.name = "butterflyOption"
+            self.addChild(butterflyOption)
+        }
+        if seeds > 29 {
+            bumblebeeOption = SKSpriteNode(texture: SKTexture(imageNamed: "bumblebee"), color: .black, size: CGSize(width: 45, height: 45))
+            bumblebeeOption.position = CGPoint(x: xStart + 100, y: y)
+            bumblebeeOption.name = "bumblebeeOption"
+            self.addChild(bumblebeeOption)
         }
     }
     
     // determines which tower to add a ladybug texture to
     func addLadybugTexture(touchedNode: SKNode) {
         // row 1
-        print("adding ladybug")
         seeds = seeds - 12
         if touchedNode.position == CGPoint(x: -130.0, y: 190.0) {
             towerSpot1.texture = SKTexture(imageNamed: "ladybug")
@@ -480,99 +440,96 @@ class LevelTwoScene: SKScene  {
         }
     }
     
-    // determines which tower to add a grasshopper texture to
-    func addGrasshopperTexture(touchedNode: SKNode) {
-        // for grasshopper options
+    // determines which tower to add a butterfly texture to
+    func addButterflyTexture(touchedNode: SKNode) {
+        // for butterfly options
         // row 1
         seeds = seeds - 20
-        print("adding grasshopper")
         if touchedNode.position == CGPoint(x: -80.0, y: 190.0) {
-            towerSpot1.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot1.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot1)
         }
         if touchedNode.position == CGPoint(x: 80.0, y: 190.0) {
-            towerSpot2.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot2.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot2)
         }
         //row 2
         if touchedNode.position == CGPoint(x: -80.0, y: 110.0) {
-            towerSpot3.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot3.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot3)
         }
         if touchedNode.position == CGPoint(x: 80.0, y: 110.0) {
-            towerSpot4.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot4.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot4)
         }
         //row 3
         if touchedNode.position == CGPoint(x: -80.0, y: 0.0) {
-            towerSpot5.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot5.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot5)
         }
         if touchedNode.position == CGPoint(x: 50.0, y: 0.0) {
-            towerSpot6.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot6.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot6)
         }
         //row 4
         if touchedNode.position == CGPoint(x: -80.0, y: -110.0) {
-            towerSpot7.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot7.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot7)
         }
         if touchedNode.position == CGPoint(x: 50.0, y: -110.0) {
-            towerSpot8.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot8.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot8)
         }
         // last node
         if touchedNode.position == CGPoint(x: -80.0, y: -220.0) {
-            towerSpot9.texture = SKTexture(imageNamed: "grasshopper")
+            towerSpot9.texture = SKTexture(imageNamed: "butterfly")
             towers.append(towerSpot9)
         }
     }
     
-    // determimese which tower to add a earthworm texture to
-    func addEarthwormTexture(touchedNode: SKNode) {
-        // for earthworm options
+    // determimese which tower to add a bumblebee texture to
+    func addBumblebeeTexture(touchedNode: SKNode) {
+        // for bumblebee options
         seeds = seeds - 30
-        print("adding earthworm")
-        print(touchedNode.position)
         // row 1
         if touchedNode.position == CGPoint(x: -30.0, y: 190.0) {
-            towerSpot1.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot1.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot1)
         }
         if touchedNode.position == CGPoint(x: 130.0, y: 190.0) {
-            towerSpot2.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot2.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot2)
         }
         // row 2
         if touchedNode.position == CGPoint(x: -30.0, y: 110.0) {
-            towerSpot3.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot3.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot3)
         }
         if touchedNode.position == CGPoint(x: 130.0, y: 190.0) {
-            towerSpot4.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot4.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot4)
         }
         // row 3
         if touchedNode.position == CGPoint(x: -30.0, y: 0.0) {
-            towerSpot5.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot5.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot5)
         }
         if touchedNode.position == CGPoint(x: 100.0, y: 0.0) {
-            towerSpot6.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot6.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot6)
         }
         // row 4
         if touchedNode.position == CGPoint(x: -30.0, y: -110.0) {
-            towerSpot7.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot7.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot7)
         }
         if touchedNode.position == CGPoint(x: 100.0, y: -110.0) {
-            towerSpot8.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot8.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot8)
         }
         // last node
         if touchedNode.position == CGPoint(x: -30.0, y: -220.0) {
-            towerSpot9.texture = SKTexture(imageNamed: "earthworm")
+            towerSpot9.texture = SKTexture(imageNamed: "bumblebee")
             towers.append(towerSpot9)
         }
     }
@@ -600,12 +557,12 @@ class LevelTwoScene: SKScene  {
             // Determine vector to targetSprite
             let vector = CGVector(dx: targetSprite.position.x-tower.position.x, dy: targetSprite.position.y-tower.position.y)
             var bulletAction = SKAction()
-            if String(describing: tower.texture!) == "<SKTexture> 'ladybug' (56 x 56)" {
+            if String(describing: tower.texture!) == "<SKTexture> 'ladybug' (75 x 75)" {
                 bulletAction = SKAction.sequence([SKAction.repeat(SKAction.move(by: vector, duration: 1), count: 10) ,  SKAction.wait(forDuration: 30.0/60.0), SKAction.removeFromParent()])
                 bullet.run(bulletAction)
-            } else if String(describing: tower.texture!) == "<SKTexture> 'grasshopper' (77 x 77)" {
+            } else if String(describing: tower.texture!) == "<SKTexture> 'butterfly' (75 x 75)" {
                 bulletAction = SKAction.sequence([SKAction.repeat(SKAction.move(by: vector, duration: 1), count: 10) ,  SKAction.wait(forDuration: 30.0/60.0), SKAction.removeFromParent()])
-            } else if String(describing: tower.texture!) == "<SKTexture> 'earthworm' (77 x 77)" {
+            } else if String(describing: tower.texture!) == "<SKTexture> 'bumblebee' (75 x 75)" {
                 bulletAction = SKAction.sequence([SKAction.repeat(SKAction.move(by: vector, duration: 1), count: 10) ,  SKAction.wait(forDuration: 30.0/60.0), SKAction.removeFromParent()])
             } else {
                 print("no texture... somehow")
@@ -632,39 +589,34 @@ class LevelTwoScene: SKScene  {
                     
             }
         }
-        for enemy in enemies {
+        if enemies.count > 0 {
+            let enemy = enemies[0]
             if enemy.position.y < -240 {
                 lives = lives - 1
                 if lives > 0 {
-                    enemies.removeLast()
                     enemy.removeFromParent()
+                    enemies.removeFirst()
                 } else {
                     isPaused = true
                     prepareLabel.text = "Game Over"
                 }
-                
-                
             }
         }
     }
 
     
     func projectileDidCollideWithEnemy(projectile: Bullet, enemy: Enemy) {
-//        print("Hit")
         enemy.hits += 1
         projectile.removeFromParent()
         // ladybugs
-        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'ladybug' (56 x 56)" {
-            print("ladybug hit!")
+        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'ladybug' (75 x 75)" {
             checkIfKilled(enemy: enemy)
         }
-        //grasshoppers
-        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'grasshopper' (77 x 77)" {
-            print("grasshopper hit!")
+        //butterflys
+        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'butterfly' (75 x 75)" {
             checkIfKilled(enemy: enemy)
         }
-        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'earthworm' (77 x 77)" {
-            print("earthworm hit!")
+        if String(describing: projectile.parentTower.texture!) == "<SKTexture> 'bumblebee' (75 x 75)" {
             checkIfKilled(enemy: enemy)
         }
         

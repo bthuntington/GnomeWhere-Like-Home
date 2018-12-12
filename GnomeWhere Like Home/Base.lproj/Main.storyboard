@@ -102,11 +102,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-s9-UiH">
-                                <rect key="frame" x="-4" y="60" width="383" height="611"/>
+                                <rect key="frame" x="-4" y="60" width="383" height="571"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-ir-jc0">
-                                        <rect key="frame" x="14" y="31" width="348" height="540"/>
+                                        <rect key="frame" x="14" y="31" width="348" height="561"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment>
@@ -124,7 +124,7 @@
                                 <color key="backgroundColor" red="0.66134645280000004" green="1" blue="0.90383288709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.66134645280000004" green="1" blue="0.90383288709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="ZLG-ln-byZ"/>
                     </view>
                 </viewController>
@@ -372,16 +372,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <skView contentMode="scaleToFill" sceneName="LevelTwoScene.sks" translatesAutoresizingMaskIntoConstraints="NO" id="S32-ez-bSa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="482"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="484"/>
                             </skView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-Ca-fRJ">
-                                <rect key="frame" x="16" y="552" width="343" height="109"/>
+                                <rect key="frame" x="16" y="554" width="343" height="107"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IPX-An-u1Z">
-                                        <rect key="frame" x="0.0" y="0.0" width="88" height="109"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="107"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-KM-aYY">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="109"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="107"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -389,19 +389,19 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="oQH-zT-e6T">
-                                        <rect key="frame" x="103" y="0.0" width="56" height="109"/>
+                                        <rect key="frame" x="88" y="0.0" width="75" height="107"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LadyBug" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCn-bQ-Rbx">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ladybug" translatesAutoresizingMaskIntoConstraints="NO" id="N5l-Dw-AfM">
-                                                <rect key="frame" x="0.0" y="15.5" width="56" height="79"/>
+                                                <rect key="frame" x="0.0" y="15.5" width="75" height="77"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 12 S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-M0-Wm6">
-                                                <rect key="frame" x="0.0" y="95.5" width="56" height="13.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 12 S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-M0-Wm6">
+                                                <rect key="frame" x="0.0" y="93.5" width="75" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -409,19 +409,19 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GaE-SP-aD0">
-                                        <rect key="frame" x="174" y="0.0" width="77" height="109"/>
+                                        <rect key="frame" x="178" y="0.0" width="75" height="107"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GrassHopper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fny-RH-utg">
-                                                <rect key="frame" x="0.0" y="0.0" width="77" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Butterfly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fny-RH-utg">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grasshopper" translatesAutoresizingMaskIntoConstraints="NO" id="IYw-Wt-uKW">
-                                                <rect key="frame" x="0.0" y="16.5" width="77" height="77"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="butterfly" translatesAutoresizingMaskIntoConstraints="NO" id="IYw-Wt-uKW">
+                                                <rect key="frame" x="0.0" y="16.5" width="75" height="75"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 20 S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH3-cY-GiY">
-                                                <rect key="frame" x="0.0" y="95.5" width="77" height="13.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 20 S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH3-cY-GiY">
+                                                <rect key="frame" x="0.0" y="93.5" width="75" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -429,19 +429,19 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="swl-Pi-3CU">
-                                        <rect key="frame" x="266" y="0.0" width="77" height="109"/>
+                                        <rect key="frame" x="268" y="0.0" width="75" height="107"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EarthWorm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-bE-reJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="77" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bumblebee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar7-bE-reJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earthworm" translatesAutoresizingMaskIntoConstraints="NO" id="azj-bg-XaT">
-                                                <rect key="frame" x="0.0" y="16.5" width="77" height="77"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bumblebee" translatesAutoresizingMaskIntoConstraints="NO" id="azj-bg-XaT">
+                                                <rect key="frame" x="0.0" y="16.5" width="75" height="75"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 30 S " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syJ-v0-iNl">
-                                                <rect key="frame" x="0.0" y="95.5" width="77" height="13.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: 30 S " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syJ-v0-iNl">
+                                                <rect key="frame" x="0.0" y="93.5" width="75" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -611,9 +611,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="earthworm" width="77" height="77"/>
-        <image name="grasshopper" width="77" height="77"/>
-        <image name="ladybug" width="56" height="56"/>
+        <image name="bumblebee" width="75" height="75"/>
+        <image name="butterfly" width="75" height="75"/>
+        <image name="ladybug" width="75" height="75"/>
         <image name="sweet-botanical-iphone7plus" width="1080" height="1920"/>
     </resources>
 </document>
